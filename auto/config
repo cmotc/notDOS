@@ -40,7 +40,7 @@ lb config noauto \
     -d unstable \
     --updates no \
     --parent-distribution unstable \
-    --debootstrap-options "--merged-usr --variant=minbase --include=busybox-syslogd,gnupg2,gpgv-static,gnutls-bin,apt-transport-https $components $dsusekeyring" \
+    --debootstrap-options "--merged-usr $dsusekeyring --variant=minbase --include=busybox-syslogd,gnupg2,gpgv-static,gnutls-bin,apt-transport-https $components" \
     --initsystem sysvinit \
     --parent-mirror-bootstrap "$mirror" \
     "$archiveareas" \
