@@ -227,7 +227,7 @@ docker-build:
 	docker run -i \
 		--name "$(image_prename)-live-build" \
 		--privileged \
-		-t $(image_prename) \
+		-t $(image_prename)-$(distro) \
 		make build
 
 docker-build-hardened-on-hardened:
@@ -235,7 +235,7 @@ docker-build-hardened-on-hardened:
 	docker run -i \
 		--name "$(image_prename)-live-build" \
 		--privileged \
-		-t $(image_prename) \
+		-t $(image_prename)-$(distro) \
 		make build-hardened-on-hardened
 	make harden-container
 
