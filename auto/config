@@ -1,0 +1,50 @@
+#! /usr/bin/env bash
+
+components=$( [ ! -z "$nonfree" ] && echo "--components=\"main,contrib,non-free\"" || echo "" )
+archiveareas=$( [ ! -z "$nonfree" ] && echo "--archive-areas \"main contrib non-free\"" || echo "" )
+nosource=$( [ ! -z "$nonfree" ] && echo "--apt-source-archives false" || echo "" )
+export non_free=$( [ ! -z "$nonfree" ] && echo "-nonfree" || echo "" )
+
+useproxy=$( [ ! -z "$proxy_addr" ] && echo "--apt-http-proxy $proxy_addr" || echo "" )
+
+harden=$( [ ! -z "$hardened" ] && echo "-k grsec-amd64" || echo "" )
+export is_harden=$( [ ! -z "$hardened" ] && echo "-hardened" || echo "" )
+
+export customized=$( [ ! -z "$customize" ] && echo "-custom" || echo "" )
+
+mirror=http://ftp.us.debian.org/debian/
+
+if [ -z "$usedevuan" ]; then
+        dsusekeyring="--keyring=/usr/share/keyrings/devuan-archive-keyring.gpg"
+        usekeyring="--keyring-packages=devuan-keyring"
+        mirror="http://packages.devuan.org/merged"
+elif [ -z "$useubuntu" ]; then
+        dsusekeyring="--keyring=/usr/share/keyrings/ubuntu-archive-keyring.gpg"
+        usekeyring="--keyring-packages=ubuntu-archive-keyring"
+        mirror="http://archive.ubuntu.com/ubuntu/"
+        components=$( [ ! -z "$nonfree" ] && echo "--components=\"main,restricted,universe,multiverse\"" || echo "" )
+        archiveareas=$( [ ! -z "$nonfree" ] && echo "--archive-areas \"main restricted universe multiverse\"" || echo "" )
+fi
+
+if [ ! -z "$components" ]; then
+        echo "WARNING: USING NON-FREE COMPONENTS! $components"
+        sleep 5
+fi
+
+lb config noauto \
+    -b iso-hybrid \
+    --debian-installer live \
+    --system live \
+    $useproxy \
+    $usekeyring \
+    -d sid \
+    --updates no \
+    --parent-distribution sid \
+    --debootstrap-options "--merged-usr --variant=minbase --include=busybox-syslogd,gnupg2,gpgv-static,gnutls-bin,apt-transport-https $components $dsusekeyring $mirror" \
+    --initsystem sysvinit \
+    --parent-mirror-bootstrap "$mirror" \
+    $archiveareas \
+    $nosource \
+    $harden \
+    --image-name "$image_prename$is_harden$non_free$customized" \
+    "$@"
