@@ -37,47 +37,47 @@ clean:
 
 config:
 	lb config --firmware-chroot true \
-		--firmware-binary true \
+		--firmware-binary true
 
 config-hardened:
 	export hardened="yes"; \
 	lb config --firmware-chroot true \
-		--firmware-binary true \
+		--firmware-binary true
 
 config-custom:
 	export customize="yes"; \
 	lb config --firmware-chroot true \
-		--firmware-binary true \
+		--firmware-binary true
 
 config-nonfree:
 	export nonfree="yes"; \
 	lb config --firmware-chroot true \
-		--firmware-binary true \
+		--firmware-binary true
 
 config-hardened-custom:
 	export hardened="yes"; \
 	export customize="yes"; \
 	lb config --firmware-chroot true \
-		--firmware-binary true \
+		--firmware-binary true
 
 config-nonfree-hardened:
 	export nonfree="yes"; \
 	export hardened="yes"; \
 	lb config --firmware-chroot true \
-		--firmware-binary true \
+		--firmware-binary true
 
 config-nonfree-custom:
 	export nonfree="yes"; \
 	export customize="yes"; \
 	lb config --firmware-chroot true \
-		--firmware-binary true \
+		--firmware-binary true
 
 config-nonfree-hardened-custom:
 	export nonfree="yes"; \
 	export hardened="yes"; \
 	export customize="yes"; \
 	lb config --firmware-chroot true \
-		--firmware-binary true \
+		--firmware-binary true
 
 unfree:
 	make playdeb-repo; \
