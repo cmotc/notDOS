@@ -12,7 +12,7 @@ list:
 	@echo "Available commands"
 	@echo "=================="
 	@echo ""
-	@echo " Image Name Prefix: $(IMAGE_PRENAME)"
+	@echo " Image Name Prefix: $(image_prename)"
 	@echo ""
 	@echo " Proxy: $(proxy_addr)"
 	@echo ""
@@ -179,19 +179,19 @@ docker:
 
 docker-debian:
 	docker build -t live-build-debian -f Dockerfiles/Dockerfile.live-build.Debian .
-	docker build -t hoarder-build-debian \
+	docker build -t $(image_prename)-debian \
 		--build-arg "nonfree=$(nonfree) customize=$(customize) hardened=$(hardened)" \
 		-f Dockerfiles/Dockerfile.Debian .
 
 docker-ubuntu:
 	docker build -t live-build-ubuntu -f Dockerfiles/Dockerfile.live-build.Ubuntu .
-	docker build -t hoarder-build-ubuntu \
+	docker build -t $(image_prename)-ubuntu \
 		--build-arg "nonfree=$(nonfree) customize=$(customize) hardened=$(hardened)" \
 		-f Dockerfiles/Dockerfile.Ubuntu .
 
 docker-devuan:
 	docker build -t live-build-devuan -f Dockerfiles/Dockerfile.live-build.Devuan .
-	docker build -t hoarder-build-devuan \
+	docker build -t $(image_prename)-devuan \
 		--build-arg "nonfree=$(nonfree) customize=$(customize) hardened=$(hardened)" \
 		-f Dockerfiles/Dockerfile.Devuan .
 
@@ -220,14 +220,14 @@ docker-clean:
 	docker run -i \
 		--name "$(image_prename)-live-build" \
 		--privileged \
-		-t hoarder-build \
+		-t $(image_prename) \
 		make clean
 
 docker-build:
 	docker run -i \
 		--name "$(image_prename)-live-build" \
 		--privileged \
-		-t hoarder-build \
+		-t $(image_prename) \
 		make build
 
 docker-build-hardened-on-hardened:
@@ -235,7 +235,7 @@ docker-build-hardened-on-hardened:
 	docker run -i \
 		--name "$(image_prename)-live-build" \
 		--privileged \
-		-t hoarder-build \
+		-t $(image_prename) \
 		make build-hardened-on-hardened
 	make harden-container
 
