@@ -14,6 +14,7 @@ export customized=$( [ ! -z "$customize" ] && echo "-custom" || echo "" )
 
 mirror=http://ftp.us.debian.org/debian/
 dsusekeyring="--keyring=/usr/share/keyrings/debian-archive-keyring.gpg"
+
 if [ -z "$usedevuan" ]; then
         dsusekeyring="--keyring=/usr/share/keyrings/devuan-archive-keyring.gpg"
         usekeyring="--keyring-packages=devuan-keyring"
