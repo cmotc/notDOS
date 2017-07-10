@@ -37,9 +37,9 @@ lb config noauto \
     --system live \
     "$useproxy" \
     "$usekeyring" \
-    -d sid \
+    -d unstable \
     --updates no \
-    --parent-distribution sid \
+    --parent-distribution unstable \
     --debootstrap-options "--merged-usr --variant=minbase --include=busybox-syslogd,gnupg2,gpgv-static,gnutls-bin,apt-transport-https $components $dsusekeyring" \
     --initsystem sysvinit \
     --parent-mirror-bootstrap "$mirror" \
