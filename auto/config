@@ -38,15 +38,15 @@ lb config noauto \
     -b iso-hybrid \
     --debian-installer live \
     --system live \
-    "$useproxy" \
+    $useproxy \
     "$usekeyring" \
     -d unstable \
     --updates no \
     --parent-distribution unstable \
     --debootstrap-options "--merged-usr $dsusekeyring --variant=minbase --include=busybox-syslogd,gnupg2,gpgv-static,gnutls-bin,apt-transport-https $components" \
     --initsystem sysvinit \
-    "$archiveareas" \
-    "$nosource" \
+    $archiveareas \
+    $nosource \
     "$harden" \
     --image-name "$image_prename$is_harden$non_free$customized" \
     "$@" \
