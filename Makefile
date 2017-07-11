@@ -240,3 +240,6 @@ docker-build-hardened-on-hardened:
 	make harden-container
 
 #--build-arg "nonfree=$(nonfree) customize=$(customize) harden=$(harden)" \
+get-keys:
+	gpg --recv-keys 94532124541922FB
+	gpg --armor --export 94532124541922FB >keyrings/debian.gpg
