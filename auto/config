@@ -45,9 +45,9 @@ lb config noauto \
     --parent-distribution unstable \
     --debootstrap-options "--merged-usr $dsusekeyring --variant=minbase --include=busybox-syslogd,gnupg2,gpgv-static,gnutls-bin,apt-transport-https $components" \
     --initsystem sysvinit \
-    --parent-mirror-bootstrap "$mirror" \
     "$archiveareas" \
     "$nosource" \
     "$harden" \
     --image-name "$image_prename$is_harden$non_free$customized" \
-    "$@"
+    "$@" \
+    --parent-mirror-bootstrap "$mirror"
