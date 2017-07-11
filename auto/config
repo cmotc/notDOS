@@ -17,11 +17,11 @@ dsusekeyring="--keyring=keyrings/debian.gpg"
 usekeyring="--keyring-packages=debian-archive-keyring"
 
 if [ -z "$usedevuan" ]; then
-        dsusekeyring="--keyring=/usr/share/keyrings/devuan-archive-keyring.gpg"
+        dsusekeyring="--keyring=keyrings/devuan.gpg"
         usekeyring="--keyring-packages=devuan-keyring"
         mirror="http://packages.devuan.org/merged"
 elif [ -z "$useubuntu" ]; then
-        dsusekeyring="--keyring=/usr/share/keyrings/ubuntu-archive-keyring.gpg"
+        dsusekeyring="--keyring=keyrings/ubuntu.gpg"
         usekeyring="--keyring-packages=ubuntu-archive-keyring"
         mirror="http://archive.ubuntu.com/ubuntu/"
         components=$( [ ! -z "$nonfree" ] && echo "--components=\"main,restricted,universe,multiverse\"" || echo "" )

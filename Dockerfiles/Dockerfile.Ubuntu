@@ -6,7 +6,6 @@ RUN make docker-init
 USER root
 RUN make clean
 USER livebuilder
-COPY keyrings/ keyrings/
 RUN make config
 RUN make libre
 RUN make custom
