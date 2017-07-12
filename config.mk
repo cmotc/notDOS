@@ -76,3 +76,6 @@ get-keys:
 import-keys:
 	gpg --import keyrings/devuan.gpg
 	gpg --import keyrings/debian.gpg
+	gpg --import keyrings/debian-archive-keyring.gpg
+	gpg --import keyrings/devuan-archive-keyring.gpg
+	gpg --import keyrings/ubuntu-archive-keyring.gpg
