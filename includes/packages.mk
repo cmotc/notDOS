@@ -14,7 +14,6 @@ packages:
 	echo "apparmor-profiles-extra" | tee -a build.list.chroot && \
 	echo "minidlna" | tee -a build.list.chroot && \
 	echo "openssh-server" | tee -a build.list.chroot && \
-	echo "secure-delete" | tee -a build.list.chroot && \
 	echo "suckless-tools" | tee -a build.list.chroot && \
 	echo "menu-xdg" | tee -a build.list.chroot && \
 	echo "xdg-utils" | tee -a build.list.chroot && \
