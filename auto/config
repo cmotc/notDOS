@@ -41,7 +41,7 @@ lb config noauto \
     --debian-installer live \
     --system live \
     $useproxy \
-    $usekeyring \
+    "$usekeyring" \
     -d unstable \
     --updates no \
     --parent-distribution unstable \
