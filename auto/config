@@ -18,7 +18,7 @@ usekeyring="--keyring-packages=debian-keyring,debian-archive-keyring"
 
 if [ ! -z "$devuan" ]; then
         dsusekeyring="--keyring=keyrings/devuan-archive-keyring.gpg"
-        usekeyring="--keyring-packages=devuan-keyring,devuan-archive-keyring"
+        usekeyring="--keyring-packages=devuan-keyring"
         mirror="http://packages.devuan.org/merged"
 elif [ ! -z "$ubuntu" ]; then
         dsusekeyring="--keyring=keyrings/ubuntu-archive-keyring.gpg"
