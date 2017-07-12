@@ -1,3 +1,4 @@
 #! /usr/bin/env bash
+export DEBOOTSTRAP_OPTIONS="--keyring="
 lb build noauto "$@"
 bash

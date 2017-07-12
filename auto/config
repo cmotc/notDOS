@@ -18,7 +18,7 @@ usekeyring="--keyring-packages debian-keyring,debian-archive-keyring"
 
 if [ ! -z "$devuan" ]; then
         dsusekeyring="--keyring=keyrings/devuan-archive-keyring.gpg"
-        usekeyring="--keyring-packages devuan-keyring"
+        usekeyring="--keyring-packages devuan-keyring,devuan-archive-keyring"
         mirror="http://packages.devuan.org/merged"
 elif [ ! -z "$ubuntu" ]; then
         dsusekeyring="--keyring=keyrings/ubuntu-archive-keyring.gpg"
@@ -30,7 +30,7 @@ fi
 
 if [ ! -z "$components" ]; then
         echo "WARNING: USING NON-FREE COMPONENTS! $components"
-        echo "--merged-usr $dsusekeyring --variant=minbase --include=busybox-syslogd,gnupg2,gpgv-static,gnutls-bin,apt-transport-https $components"
+        echo "--merged-usr $dsusekeyring --variant=minbase --include=busybox-syslogd,gnupg2,gpgv-static,gnutls-bin,apt-transport-https,ca-certificates $components"
         sleep 5
 fi
 
