@@ -1,7 +1,9 @@
 FROM debitux/devuan:unstable
-RUN apt-get update
-RUN apt-get install -yq \
+ARG DEBIAN_FRONTEND="noninteractive"
+ENV LANG="C.UTF-8" LC_ALL="C.UTF-8"
+RUN apt-get update && apt-get install -yq --fix-missing \
                 apt-transport-https \
+                ca-certificates \
                 gpgv-static \
                 gnupg2 \
                 bash \
