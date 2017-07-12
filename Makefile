@@ -12,7 +12,7 @@ list:
 	@echo "Available commands"
 	@echo "=================="
 	@echo ""
-	@echo " Image Name Prefix: $(image_prename)"
+	@echo " Image Name Prefix: $(IMAGE_PRENAME)"
 	@echo ""
 	@echo " Proxy: $(proxy_addr)"
 	@echo ""
@@ -37,47 +37,47 @@ clean:
 
 config:
 	lb config --firmware-chroot true \
-		--firmware-binary true
+		--firmware-binary true \
 
 config-hardened:
 	export hardened="yes"; \
 	lb config --firmware-chroot true \
-		--firmware-binary true
+		--firmware-binary true \
 
 config-custom:
 	export customize="yes"; \
 	lb config --firmware-chroot true \
-		--firmware-binary true
+		--firmware-binary true \
 
 config-nonfree:
 	export nonfree="yes"; \
 	lb config --firmware-chroot true \
-		--firmware-binary true
+		--firmware-binary true \
 
 config-hardened-custom:
 	export hardened="yes"; \
 	export customize="yes"; \
 	lb config --firmware-chroot true \
-		--firmware-binary true
+		--firmware-binary true \
 
 config-nonfree-hardened:
 	export nonfree="yes"; \
 	export hardened="yes"; \
 	lb config --firmware-chroot true \
-		--firmware-binary true
+		--firmware-binary true \
 
 config-nonfree-custom:
 	export nonfree="yes"; \
 	export customize="yes"; \
 	lb config --firmware-chroot true \
-		--firmware-binary true
+		--firmware-binary true \
 
 config-nonfree-hardened-custom:
 	export nonfree="yes"; \
 	export hardened="yes"; \
 	export customize="yes"; \
 	lb config --firmware-chroot true \
-		--firmware-binary true
+		--firmware-binary true \
 
 unfree:
 	make playdeb-repo; \
@@ -217,7 +217,7 @@ docker-clean:
 	docker run -i \
 		--name "$(image_prename)-build" \
 		--privileged \
-		-t $(image_prename) \
+		-t $(image_prename)-$(distro) \
 		make clean
 
 docker-build:
@@ -239,4 +239,4 @@ docker-build-hardened-on-hardened:
 #--build-arg "nonfree=$(nonfree) customize=$(customize) harden=$(harden)" \
 
 throw:
-	scp -r . media@media:notdos
+	scp -r . media@media:Docker/hoarderMediaOS
